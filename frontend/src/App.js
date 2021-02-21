@@ -24,7 +24,6 @@ function App() {
       (
       async () => {
           const {data} = await axios.get('http://localhost:8088/api/user', config, {withCredentials: true});
-          console.log(data);
           setUser(data);
       })();
 

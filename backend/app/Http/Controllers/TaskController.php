@@ -57,9 +57,9 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($project_id)
     {
-        return Task::findOrFail($id);
+        return Task::where('project_id', '=', $project_id)->get();
 
     }
 

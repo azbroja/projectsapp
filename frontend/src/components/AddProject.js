@@ -17,10 +17,7 @@ export const AddProject = () => {
 
     const submit = async (e) => {
         e.preventDefault();
-        console.log(title);
-
         const {data} = await axios.post('http://localhost:8088/api/projects', newProject, {withCredentials: true})
-        console.log('poszłow');
     }
    
     return (

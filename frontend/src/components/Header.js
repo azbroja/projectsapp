@@ -7,16 +7,14 @@ export const Header = () => {
     const handleOnLogout = () => {
         localStorage.clear(); 
         setRedirect(true);
-
 };
 if (redirect) {
     return <Redirect to="/login" />;
 }
     return (
         <div>
-            Header
-            <button onClick={handleOnLogout}>Log out</button>
-}
+            <button onClick={handleOnLogout}> Log out </button>
+
         </div>
     )
 }

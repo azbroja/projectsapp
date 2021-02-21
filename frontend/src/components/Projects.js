@@ -9,7 +9,6 @@ export const Projects = () => {
         async () => {
             const {data} = await axios.get('http://localhost:8088/api/projects', {withCredentials: true});
             setProjects(data);
-            console.log(projects);
         })();
   
     }, []);

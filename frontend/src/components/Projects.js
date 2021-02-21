@@ -3,7 +3,8 @@ import axios from 'axios';
 
 export const Projects = () => {
    const [projects, setProjects] = useState([]);
-   
+
+
    useEffect(() => {
         (
         async () => {
@@ -12,6 +13,8 @@ export const Projects = () => {
         })();
   
     }, []);
+
+    
    
     return (
         <div>

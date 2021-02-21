@@ -23,7 +23,7 @@ export const AddProject = () => {
     return (
         <div>
              <form onSubmit={submit}>
-                <h1 className=""> Please Log in </h1>
+                <h1 className=""> Add a project </h1>
 
                 <input type="text" className="" placeholder="Please write a title" required onChange={e => setTitle(e.target.value)}
                 />

@@ -17,7 +17,7 @@ export const Task = ({id}) => {
                 const {data} = await axios.get('http://localhost:8088/api/tasks/'+id, {withCredentials: true});
                 setTasks(data);
             })();        
-    }, []);
+    }, [id, redirect]);
 
     const newTask = {
         title: title,
@@ -32,9 +32,8 @@ export const Task = ({id}) => {
 
     }
 
-    if (redirect) {
-        return <Redirect to={'/projects/'+id} />;
-    }
+   
+    
     return (
 
         <div>
@@ -51,9 +50,10 @@ export const Task = ({id}) => {
                 <button className="" type="submit">Add Task</button>
             </form>
         </div>
-            <h1>  Tasks   </h1>
+            
+            <h1>  Tasks List   </h1>
             {tasks.map( ( {id, title, description} ) => {
-    return <ol><a href={"/tasks/"+id} key={id}>{title} - {description}</a> </ol>
+    return <ol key={id}><a href={"/tasks/"+id} key={id}>{title} - {description}</a> </ol>
 })}
 
         </div>

@@ -40,10 +40,9 @@ function App() {
         <Switch>
           <Route path={'/dashboard'} component={() => <Dashboard user={user} />} exact/>
           {token ? '' : <Route path={'/login'} component={Login} exact/>}
-          <Route path={'/add-project'} component={AddProject} exact/>
+          <Route path={'/add-project'} component={() => <AddProject user={user} />} exact/>
           <Route path={'/all-projects'} component={Projects} exact/>
-          
-          <Route path={'/projects/:id'} component={Item} exact/>
+          <Route path={'/projects/:id'} component={() => <Item user={user} />} exact/>
         </Switch>
         </BrowserRouter> 
 

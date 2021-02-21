@@ -16,7 +16,7 @@ export const Projects = () => {
     return (
         <div>
             {projects.map( ( {id, title, description} ) => {
-    return <ol><a href={"/projects/"+id} key={id}>{title} - {description}</a> </ol>
+    return <ol key={id}><a href={"/projects/"+id} key={id}>{title} - {description}</a> </ol>
 })}
         </div>
     )

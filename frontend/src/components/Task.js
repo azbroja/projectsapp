@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useReducer} from 'react';
 import axios from 'axios';
+import { Redirect } from "react-router-dom";
 
 
 
@@ -8,13 +9,13 @@ export const Task = ({id}) => {
     const [tasks, setTasks] = useState([]);
     const [description, setDescription] = useState('');
     const [title, setTitle] = useState('');
- 
+    const [redirect, setRedirect] = useState(false);
+
     useEffect(() => {
         (
             async () => {
                 const {data} = await axios.get('http://localhost:8088/api/tasks/'+id, {withCredentials: true});
                 setTasks(data);
-                console.log(tasks);
             })();        
     }, []);
 
@@ -27,9 +28,13 @@ export const Task = ({id}) => {
     const submit = async (e) => {
         e.preventDefault();
         const {data} = await axios.post('http://localhost:8088/api/tasks', newTask, {withCredentials: true})
+        setRedirect(true);
+
     }
 
-
+    if (redirect) {
+        return <Redirect to={'/projects/'+id} />;
+    }
     return (
 
         <div>
@@ -47,7 +52,7 @@ export const Task = ({id}) => {
             </form>
         </div>
             <h1>  Tasks   </h1>
-            {tasks != [] ? 'is loading' : tasks.map( ( {id, title, description} ) => {
+            {tasks.map( ( {id, title, description} ) => {
     return <ol><a href={"/tasks/"+id} key={id}>{title} - {description}</a> </ol>
 })}
 

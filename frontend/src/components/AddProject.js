@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import axios from 'axios';
+import { Redirect } from "react-router-dom";
 
 export const AddProject = () => {
     const [description, setDescription] = useState('');
     const [title, setTitle] = useState('');
     const token = localStorage.getItem('token');
+    const [redirect, setRedirect] = useState(false);
 
     const config = {
         headers: { Authorization: `Bearer ${token}` }
@@ -17,9 +19,14 @@ export const AddProject = () => {
 
     const submit = async (e) => {
         e.preventDefault();
-        const {data} = await axios.post('http://localhost:8088/api/projects', newProject, {withCredentials: true})
+        const {data} = await axios.post('http://localhost:8088/api/projects', newProject, {withCredentials: true});
+        setRedirect(true);
+
     }
-   
+
+    if (redirect) {
+        return <Redirect to='/all-projects/' />;
+    }
     return (
         <div>
              <form onSubmit={submit}>
@@ -30,7 +37,7 @@ export const AddProject = () => {
 
                         <input type="text" className="" placeholder="Please some text" required onChange={e => setDescription(e.target.value)}
                 />      
-                <button className="" type="submit">Submit</button>
+                <button className="" type="submit">Save Project</button>
             </form>
         </div>
     )
